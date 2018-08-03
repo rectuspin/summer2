@@ -1,0 +1,8 @@
+<h1>Answer Created! Please confirm</h1>
+<h4><%=@post.title%> : answer created</h4><br>
+
+<%@results.each do |x|%>
+	<%=@i_num+1%>. <%=@questions[@i_num].content%> Answer: <%=x.content%><br>
+	<% @i_num +=1 %>
+<% end %>
+<%= link_to 'Back', posts_path %>

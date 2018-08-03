@@ -1,0 +1,14 @@
+<strong><%= @q_num %>.</strong>
+<form action= "/posts/<%=@post.id%>/questions/<%=@question.id%>/update" method = "POST">
+	<input type = "radio" name="q_type" value="text" <%= "checked" if @question.q_type=="text"%>/>			Text
+	<input type = "radio" name="q_type" value="radio" <%= "checked" if @question.q_type=="radio"%>/>
+			radio(select only 1)<br>
+	<input type = "radio" name="q_type" value="checkbox" <%= "checked" if @question.q_type=="checkbox"%>/>checkbox(select all)<br>
+	<textarea name="content"><%=@question.content%></textarea>
+	<input type="submit" value="Complete"><br>
+</form>
+<% @question.selections.each do |selection| %>
+		 |<%= selection.content %>&nbsp; 
+		 <td><%= link_to 'X', "/posts/#{@post.id}/questions/#{@question.id}/selections/#{selection.id}/destroy" %></td>
+<% end %>
+		

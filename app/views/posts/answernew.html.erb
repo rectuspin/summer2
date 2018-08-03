@@ -1,0 +1,34 @@
+<h1>New Answer</h1>
+<h3>Title: <%= @post.title %></h3>
+
+<h3>Your Answer</h3>
+<form action= "/posts/<%=@post.id%>/answer/create" method = "POST">
+	<input type="hidden" name="email" value="<%=current_user.email=%>">
+	<!--content: <textarea name="content"></textarea><br>-->
+	<% @q_num.times do |x|%> <!--x = 0, 1, ... question개수-1 -->
+		<% question = @questions[x] %>
+		<strong><%=x+1%>.</strong> <%= question.content %><br>
+		<% if question.q_type=="text" %>
+		<textarea name="item_<%=x.to_s%>_text"></textarea><br><br>
+
+		<% elsif question.q_type=="radio" %>
+		<% question.selections.each do |selec| %>
+			<input type = "radio" id="<%=selec.content%>" name="item_<%=x.to_s%>_radio" value="<%=selec.content%>" <%="checked" if question.selections.index(selec)==0%> />
+			<%=selec.content%><br><br>
+		<% end %>
+		<% elsif question.q_type=="checkbox" %>
+		<% selec_num = 0 %>
+		<% question.selections.each do |selec| %>
+			<input type = "checkbox" name="item_<%=x.to_s%>_checkbox_<%=selec_num.to_s%>" value="<%=selec.content%>" />
+			<%=selec.content%><br><br>
+			<% selec_num +=1 %>
+		<% end %>	
+		<% end %>
+	<%end %>
+
+	<input type="submit" value="Add Answer"><br>
+</form>
+
+
+
+<%= link_to 'Back', posts_path %>

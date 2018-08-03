@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %><br><br>
+<%= link_to 'Edit', edit_post_path(@post) %> 
+</p>
+<% q_num = 1 %>
+<% @post.questions.each do|question| %>
+	<strong><%= q_num %>. </strong><%= question.content %> (<%=question.q_type%>)<br>
+	<% if user_signed_in? %>
+    	<% if @post.email == current_user.email %>
+			<td><%= link_to 'Destroy', "/posts/#{@post.id}/questions/#{question.id}/destroy" %></td>
+			<td><%= link_to 'Edit', "/posts/#{@post.id}/questions/#{question.id}/edit" %></td><br>
+		<% end %>
+	<% end %>
+	<% if question.q_type == "radio" || question.q_type == "checkbox"%>
+	
+	<% question.selections.each do |selection| %>
+		 |<%= selection.content %>&nbsp; 
+		<% if user_signed_in? %>
+    		<% if @post.email == current_user.email %>
+		 		<td><%= link_to 'X', "/posts/#{@post.id}/questions/#{question.id}/selections/#{selection.id}/destroy" %></td>
+			<% end %>
+		<% end %>
+	<% end %>
+	
+	<% if user_signed_in? %>
+    	<% if @post.email == current_user.email %>
+		<form action= "/posts/<%=@post.id%>/questions/<%=question.id%>/selections/create" method = "POST">
+			<textarea name="selection_content"></textarea>
+			<input type="submit" value="Add Selection"><br>
+		</form>
+		<% end %>
+	<% end %>
+	<% end %>
+	<% q_num+=1%><br><br>
+<% end %>
+------------------------------------------------------------<br><br>
+<% if user_signed_in? %>
+    <% if @post.email == current_user.email %>
+    	<strong><%= q_num %>.</strong>
+		<form action= "/posts/<%=@post.id%>/questions/create" method = "POST">
+			<input type = "radio" name="q_type" value="text" checked/>
+			Text
+			<input type = "radio" name="q_type" value="radio" />
+			radio(select only 1)<br>
+			<input type = "radio" name="q_type" value="checkbox" />
+			checkbox(select all)<br>
+			<textarea name="content"></textarea>
+			<input type="submit" value="Add Question"><br>
+		</form>
+		
+	
+	<%= link_to 'Result', "/posts/#{@post.id}/result" %>
+	<% else %>
+		<%= link_to 'Answer', "/posts/#{@post.id}/answer/new" %>
+	<% end%>
+<% end%>
+<%= link_to 'Back', posts_path %>

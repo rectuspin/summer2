@@ -1,0 +1,38 @@
+<h1>Result of <%=@post.title %> </h1>
+<%= line_chart @answers.group_by_day(:created_at).count, title: "응답 현황" %>
+<h1>*개별 t result </h1>
+<% @answers.each do |answer| %>
+	<% q_num = 0 %>
+	<h3>응답자: <%= answer.ans_email %></h3>
+	<% @items = answer.items %>
+	<% @items.each do |item| %>
+		<%=q_num+1%>번 : <%= @questions[q_num].content %> => <%= item.content %><br>
+		<% q_num += 1 %>
+	<% end %>
+	------------------------------------------<br>
+<% end %>
+<h3>총 응답자 수: <%=@ans_num%></h3>
+<%= link_to 'Back', posts_path %><br>
+
+<h1>*Graph Result</h1>
+
+<% @questions.each do |question|%>
+	<% q_index = @questions.index(question)%>
+	<% if question.q_type == "text" %>
+		<% next %>
+	<% end %>
+	<% h = Hash.new %>
+	<% question.selections.each do |s|%>
+		<% h[s.content] = s.num%>
+	<% end %>
+	<%= column_chart h, legend: "right", title: (q_index+1).to_s+". "+ question.content, width: "700px", height: "400px", label: "Value", download: "true" %>
+	<%= bar_chart h, legend: "right", title: (q_index+1).to_s+". "+ question.content, width: "700px", height: "400px", label: "Value", download: "true" %>
+
+	<%= pie_chart h, legend: "right", title: (q_index+1).to_s+". "+ question.content,width: "700px", height: "400px", label: "Value", download: "true" %>
+
+	<%= pie_chart h, legend: "right", title: (q_index+1).to_s+". "+ question.content,width: "700px", height: "400px", label: "Value", donut: "true", download: "true"%>
+
+	<br><br>
+	<%= "-"*200 %>
+	<br><br>
+<% end %>
