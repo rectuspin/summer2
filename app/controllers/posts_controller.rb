@@ -163,6 +163,12 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def search
+    @q= "%#{params[:query]}%"
+    @projects=Post.where("title LIKE ? or content LIKE ?", @q, @q)
+    render 'posts/search'
+  end
   
 
   private
@@ -175,4 +181,7 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :content, :email)
     end
+
+
+
 end

@@ -42,3 +42,11 @@
 <% if user_signed_in? %>
 <%= link_to 'New Post', new_post_path %>
 <% end %>
+
+<br><br>
+<form action="/posts/search" method="post" %>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+    <input name="query" placeholder="찾고싶은 단어를 입력하세요" type="text" autocomplete="off" size="25" >
+    <input type="submit" value="검색"><br>
+</form>     
