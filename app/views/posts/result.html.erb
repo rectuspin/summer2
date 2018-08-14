@@ -1,6 +1,6 @@
 <h1>Result of <%=@post.title %> </h1>
 <%= line_chart @answers.group_by_day(:created_at).count, title: "응답 현황" %>
-<h1>*개별 t result </h1>
+<h1>*개별 result </h1>
 <% @answers.each do |answer| %>
 	<% q_num = 0 %>
 	<h3>응답자: <%= answer.ans_email %></h3>
