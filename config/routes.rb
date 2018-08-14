@@ -13,4 +13,6 @@ post '/posts/:post_id_for_you/answer/create' => 'posts#answercreate'
 get '/posts/:post_id/result' => "posts#result"
 post "/posts/:post_id/questions/:question_id/selections/create" => "posts#selectioncreate"
 get "/posts/:post_id/questions/:question_id/selections/:selection_id/destroy" => 'posts#selectiondestroy'
+
+post '/posts/search' => 'posts#search'
 end
