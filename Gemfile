@@ -2,7 +2,12 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
+
 gem 'devise-bootstrap-views'
+
+gem 'cancancan'
+gem 'rolify'
+
 gem 'rails_db'
 gem 'devise'
 gem "chartkick"

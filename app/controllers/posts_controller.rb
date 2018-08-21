@@ -1,14 +1,24 @@
 class PostsController < ApplicationController
-  #before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
+  before_action :authenticate_user!, except: [:index, :show]
+
   skip_before_action :verify_authenticity_token
   # GET /posts
   # GET /posts.json
+  before_action :set_category, only: [:index, :new, :update]
   def result
     @post = Post.find(params[:post_id])
     @questions = @post.questions
     @answers = @post.answers
     @ans_num = @answers.count
     
+  end
+  def chart_change
+    question = Question.find(params[:question_id])
+    question.view_type = (Question.view_types[question.view_type] + 1) %3
+    question.save
+    redirect_to action: "result"
   end
   def questioncreate
     question = Question.new
@@ -104,6 +114,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @ability = Ability.new(current_user)
   end
 
   def about
@@ -119,6 +130,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
+    @ability = Ability.new(current_user)
   end
 
   # GET /posts/new
@@ -134,7 +146,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
 
     respond_to do |format|
       if @post.save
@@ -185,10 +197,12 @@ class PostsController < ApplicationController
     def set_post
       @post = Post.find(params[:id])
     end
-
+    def set_category
+      @category = ['경영','경제','IT','교육','문화/생활']
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content, :email)
+      params.require(:post).permit(:title, :content, :email, :category)
     end
 
 
