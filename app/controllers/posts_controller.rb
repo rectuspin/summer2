@@ -117,6 +117,15 @@ class PostsController < ApplicationController
     @ability = Ability.new(current_user)
   end
 
+  def about
+  end
+
+  def all
+  end
+  
+  def mypage
+  end
+
   # GET /posts/1
   # GET /posts/1.json
   def show

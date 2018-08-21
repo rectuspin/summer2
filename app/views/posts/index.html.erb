@@ -1,3 +1,215 @@
+
+<!-- header section -->
+<section class="banner" role="banner">
+  <header id="header"> 
+    <!-- navigation section  -->
+    <div class="header-content clearfix"> 
+      <a class="logo" href="/"><img src="/images/logo.png" alt="Mafolio" height="35px"></a>
+      <nav class="navigation" role="navigation">
+        <ul class="primary-nav">
+          <li><a href="/posts/about">소개</a></li><br>
+
+          <% if user_signed_in? %>
+          <li ><%= link_to '설문지 만들기', new_post_path %>
+              <%else%>
+              <%= link_to '설문지 만들기', new_user_session_path, method: :get%>
+          </li>
+          <% end %>
+          <br><br>
+
+          <% if user_signed_in? %>
+          <li>
+            <a href="/posts/mypage">내 페이지</a>
+            <%else%>
+            <%= link_to "로그인", new_user_session_path, method: :get, class: "a" %>
+          </li>
+          <% end %>
+          <br><br>
+
+          <% if user_signed_in? %>
+          <li>
+            <%= link_to "로그아웃", destroy_user_session_path, method: :delete, class: "a" %>
+            <% else%>
+            <%= link_to "회원가입",new_user_registration_path, method: :get, class: "a" %>
+          </li>
+          <% end %> 
+            
+          </li>
+        </ul>
+      </nav>
+      <a href="#" class="nav-toggle">Menu<span></span></a> 
+    </div>
+
+    <!-- navigation section  --> 
+  </header>
+  
+  <!-- banner text -->
+  <div class="container">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="banner-text text-center">
+        <h1>설왕설래</h1>
+        <p>누구나 설문지를 쉽게 돌리고,<br>
+          누구나 설문하면 혜택 받는<br>
+          설문지 공유 플랫폼</p>
+        <!-- banner text --> 
+      </div>
+    </div>
+    
+    
+    <form method="post" action="/posts/search" class="fadeInUp animated">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+					<div id="custom-search-input">
+						<div class="input-group">
+							<input name="query" type="text" class=" search-query" placeholder="관심있는 설문지를 검색하세요!" autocomplete="on">
+							<input type="submit" class="btn_search" value="검색">
+						</div>
+						<ul>
+							<li>
+								<input type="radio" id="all" name="radio_search" value="all" checked="">
+								<label for="all">전체</label>
+							</li>
+							<li>
+								<input type="radio" id="doctor" name="radio_search" value="doctor">
+								<label for="doctor">뷰티</label>
+							</li>
+							<li>
+								<input type="radio" id="clinic" name="radio_search" value="clinic">
+								<label for="clinic">음식</label>
+							</li>
+						</ul>
+					</div>
+				</form>    
+  </div>
+</section>
+<!-- header section --> 
+<!-- description text section -->
+<section id="descripton" class="section descripton">
+  <div class="container">
+    <div class="col-md-8 col-md-offset-2 text-center h-50 w-100">
+      <p>평균 설문 응답수 200건, 설왕설래로 프로젝트를 쉽게 끝내세요!<br>
+     추첨으로 소수만 사례를 받는 것이 아닌, 설문 응답자 누구나 포인트를 받아요!</p>
+      <a class="btn btn-lg" href="/posts/all" role="button">모든 설문 보러가기</a>
+    </div>
+  </div>
+</section>
+<!-- description text section --> 
+<!-- portfolio section -->
+<section id="works" class="works section no-padding">
+  <div class="container-fluid">
+    <div class="row no-gutter">
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="/images/work-1.jpg" class="work-box"> <img src="/images/work-1.jpg" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>경영</h5>
+            <p></p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="/images/work-2.jpg" class="work-box"> <img src="/images/work-2.jpg" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>경제</h5>
+            <p>Website Design</p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="/images/work-3.jpg" class="work-box"> <img src="/images/work-3.jpg" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>심리</h5>
+            <p>Branding</p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="/images/work-4.jpg" class="work-box"> <img src="/images/work-4.jpg" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>문화예술</h5>
+            <p>Graphic Design</p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="/images/work-5.jpg" class="work-box"> <img src="/images/work-5.jpg" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>IT</h5>
+            <p>Website Design</p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="/images/work-6.jpg" class="work-box"> <img src="/images/work-6.jpg" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>과학</h5>
+            <p>Logo Design</p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="/images/work-7.jpg" class="work-box"> <img src="/images/work-7.jpg" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>교육</h5>
+            <p>Branding</p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="/images/work-8.jpg" class="work-box"> <img src="/images/work-8.jpg" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>기타</h5>
+            <p>Website Design</p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+    </div>
+  </div>
+</section>
+<!-- porlio section --> 
+<!-- hire me section -->
+<section id="hireme" class="section hireme">
+  <div class="container">
+    <div class="col-md-8 col-md-offset-2 text-center">
+      <h3>Need something specific?</h3>
+      <p>We are currently crafting new products but would love to hear from you.</p>
+      <a href="/posts/contact" class="btn btn-large">Hire me</a> </div>
+  </div>
+</section>
+<!-- hire me section --> 
+<!-- footer -->
+<footer class="section footer">
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="col-md-12">
+        <p>
+        <ul class="footer-share">
+          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+          <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+          <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+          <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+        </ul>
+        </p>
+        <p>© 2018 All Rights Reserved<br>
+          Made by </a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+<!--------------------------master 부분--------------------------------------------------->
 <p id="notice"><%= notice %></p>
 
 <h1>Surveys</h1>
@@ -74,3 +286,4 @@
     <input name="query" placeholder="찾고싶은 단어를 입력하세요" type="text" autocomplete="off" size="25" >
     <input type="submit" value="검색"><br>
 </form>     
+
