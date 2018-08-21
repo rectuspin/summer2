@@ -25,13 +25,16 @@
 	<% question.selections.each do |s|%>
 		<% h[s.content] = s.num%>
 	<% end %>
+	<% if question.view_type=="column" %>
 	<%= column_chart h, legend: "right", title: (q_index+1).to_s+". "+ question.content, width: "700px", height: "400px", label: "Value", download: "true" %>
+	<% elsif question.view_type=="bar" %>
 	<%= bar_chart h, legend: "right", title: (q_index+1).to_s+". "+ question.content, width: "700px", height: "400px", label: "Value", download: "true" %>
-
+	<% else %>
 	<%= pie_chart h, legend: "right", title: (q_index+1).to_s+". "+ question.content,width: "700px", height: "400px", label: "Value", download: "true" %>
-
-	<%= pie_chart h, legend: "right", title: (q_index+1).to_s+". "+ question.content,width: "700px", height: "400px", label: "Value", donut: "true", download: "true"%>
-
+	<% end %>
+	<button>
+	<%= link_to '다른chart', "/posts/#{@post.id}/questions/#{question.id}/chart_change" %>
+    </button>
 	<br><br>
 	<%= "-"*200 %>
 	<br><br>
