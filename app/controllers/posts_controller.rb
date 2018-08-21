@@ -1,5 +1,8 @@
 class PostsController < ApplicationController
-  #before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
+  before_action :authenticate_user!, except: [:index, :show]
+
   skip_before_action :verify_authenticity_token
   # GET /posts
   # GET /posts.json
@@ -104,12 +107,14 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @ability = Ability.new(current_user)
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
+    @ability = Ability.new(current_user)
   end
 
   # GET /posts/new
@@ -125,7 +130,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
 
     respond_to do |format|
       if @post.save
