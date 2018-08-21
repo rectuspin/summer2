@@ -48,7 +48,7 @@
 	<% q_num+=1%><br><br>
 <% end %>
 ------------------------------------------------------------<br><br>
-<% if @ability.can? :answercreate, @post %>
+<% if @ability.can? :questioncreate, @post %>
     	<strong><%= q_num %>.</strong>
 		<form action= "/posts/<%=@post.id%>/questions/create" method = "POST">
 			<input type = "radio" name="q_type" value="text" checked/>
