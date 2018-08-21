@@ -12,7 +12,9 @@
 <p>
   <strong>Content:</strong>
   <%= @post.content %><br><br>
+<% if @ability.can? :edit, @post %>
 <%= link_to 'Edit', edit_post_path(@post) %> 
+<% end %>
 </p>
 <% q_num = 1 %>
 <% @post.questions.each do|question| %>
@@ -46,8 +48,7 @@
 	<% q_num+=1%><br><br>
 <% end %>
 ------------------------------------------------------------<br><br>
-<% if user_signed_in? %>
-    <% if @post.email == current_user.email %>
+<% if @ability.can? :answercreate, @post %>
     	<strong><%= q_num %>.</strong>
 		<form action= "/posts/<%=@post.id%>/questions/create" method = "POST">
 			<input type = "radio" name="q_type" value="text" checked/>
@@ -59,11 +60,10 @@
 			<textarea name="content"></textarea>
 			<input type="submit" value="Add Question"><br>
 		</form>
-		
+<% end %>		
 	
 	<%= link_to 'Result', "/posts/#{@post.id}/result" %>
-	<% else %>
+	
 		<%= link_to 'Answer', "/posts/#{@post.id}/answer/new" %>
-	<% end%>
-<% end%>
+	
 <%= link_to 'Back', posts_path %>

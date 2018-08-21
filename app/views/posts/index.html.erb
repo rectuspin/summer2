@@ -2,7 +2,7 @@
 
 <h1>Surveys</h1>
 <% if user_signed_in? %>
-<%= current_user.email %>
+<%= current_user.email + '(' + current_user.roles.pluck(:name).last + ')' %>
 <%= link_to "Log out", destroy_user_session_path, method: :delete%>
 <% else%>
 <%= link_to "Log in", new_user_session_path, method: :get%>
@@ -19,7 +19,9 @@
   </thead>
 
   <tbody>
+
     <% @posts.each do |post| %>
+    <% if @ability.can? :index, post %>
       <tr>
         <td><%= post.title %></td>
         <td><%= post.content %></td>
@@ -35,17 +37,27 @@
 
         <td><%=status%></td>
         <td><%= link_to 'Show', post %></td>
-        <% if user_signed_in? %>
-          <% if post.email == current_user.email %>
-            <td><%= link_to 'Edit', edit_post_path(post) %></td>
 
-            <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <td><%= link_to 'Result', "/posts/#{post.id}/result" %></td>
-          <% else %>
-            <td><%= link_to 'Answer', "/posts/#{post.id}/answer/new" %></td>
+
+        <%# if user_signed_in? %>
+          <% #if post.email == current_user.email %>
+          <% if @ability.can? :update, post %>
+            <td><%= link_to 'Edit', edit_post_path(post) %></td>
           <% end %>
-        <% end %>
+          <% if @ability.can? :destroy, post %>
+            <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+            <td><%= link_to 'Result', "/posts/#{post.id}/result" %></td>
+
+          <% #else %>
+          <% if @ability.can? :answernew, post %>
+            <td><%= link_to 'Answer', "/posts/#{post.id}/answer/new" %></td>
+            <% end %>
+          <% #end %>
+        <%# end %>
+
       </tr>
+      <%end%>
     <% end %>
   </tbody>
 </table>
