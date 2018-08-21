@@ -83,6 +83,7 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    devise-bootstrap-views (0.0.11)
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.23)
@@ -252,6 +253,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  devise-bootstrap-views
   groupdate
   highcharts-rails
   jbuilder (~> 2.5)
@@ -273,4 +275,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.16.2
+   1.16.3

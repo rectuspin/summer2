@@ -17,3 +17,25 @@
 //= require Chart.bundle
 //= require chartkick
 //= require highcharts
+
+// jQuery & Velocity.js
+
+//---------login--------------
+
+function slideUpIn() {
+  $("#login").velocity("transition.slideUpIn", 1250)
+};
+
+function slideLeftIn() {
+  $(".login.row").delay(500).velocity("transition.slideLeftIn", {stagger: 500})    
+}
+
+function shake() {
+  $(".password-row").velocity("callout.shake");
+}
+
+slideUpIn();
+slideLeftIn();
+$(".login-button").on("click", function () {
+  shake();
+});

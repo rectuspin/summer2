@@ -1,3 +1,501 @@
-// Place all the styles related to the Posts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@font-face { font-family: 'designhouseOTFLight00'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/designhouseOTFLight00.woff') format('woff'); font-weight: normal; font-style: normal; }
+*{
+    font-family:'cwtexhei', 'designhouseOTFLight00';
+}
+
+/*----------------gradation -> 색깔 접힌 배경화면 ----------------*/
+//to add "@include gradation-fold;"
+
+@mixin gradation-fold(){
+    background: linear-gradient(30deg, #7158e2 40%, #f78fb3 33%);   
+    animation: move 6s 0s 1;
+}
+
+@keyframes move {
+    0% {
+        background: linear-gradient(45deg, #7158e2 1%, #f78fb3 95%);
+    }
+    10% {
+        background: linear-gradient(45deg, #7158e2 5%, #f78fb3 88%);
+    }
+    20% {
+        background: linear-gradient(40deg, #7158e2 9%, #f78fb3 81%);
+    }
+    30% {
+        background: linear-gradient(40deg, #7158e2 13%, #f78fb3 74%);
+    }
+    50% {
+       background: linear-gradient(35deg, #7158e2 17%, #f78fb3 67%);
+    }
+    60% {
+       background: linear-gradient(35deg, #7158e2 21%, #f78fb3 60%);
+    }
+    70% {
+       background: linear-gradient(35deg, #7158e2 25%, #f78fb3 53%);
+    }
+    80% {
+       background: linear-gradient(30deg, #7158e2 29%, #f78fb3 46%);
+    }
+    90% {
+       background: linear-gradient(30deg, #7158e2 33%, #f78fb3 40%);
+    }
+    100% {
+        background: linear-gradient(30deg, #7158e2 40%, #f78fb3 33%);
+        }
+}
+
+
+/*---------------------------------------------------------------*/
+
+/*---------------index page 윗 부분 배경----------------------*/
+
+
+
+.banner {
+	// animation: move 10s ease infinite;
+    // transform: translate3d(0, 0, 0);
+    // background: linear-gradient(45deg, #49D49D 10%, #A2C7E5 90%);
+    @include gradation-fold;
+}
+
+
+
+
+/*-------------index page search 부분------------------------------*/
+
+
+
+
+#custom-search-input {
+    top: 0;
+    padding: 0;
+    width: 75%;
+    margin: auto;
+    position: relative;
+}
+
+.input-group {
+    position: relative;
+    
+    display: flex;
+    
+    flex-wrap: wrap;
+    -webkit-box-align: stretch;
+    
+    align-items: stretch;
+    width: 100%;
+}
+
+
+
+#custom-search-input .search-query {
+    width: 100%;
+    height: 50px;
+    padding-left: 20px;
+    border: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px 1px #999;
+    // box-shadow: 0 0 50px 0 rgba(0,0,0,.35);
+    font-weight: 500;
+    //font-size: 16px;
+    font-size: 15px;
+    color: #333;
+}
+
+
+
+#custom-search-input input[type=submit] {
+    position: absolute;
+   
+    transition: all .3s ease-in-out;
+    right: 0;
+    color: #fff;
+    font-weight: 600;
+    /* font-size: 16px; */
+    font-size: 16px;
+    top: 0;
+    border: 0;
+    padding: 0 25px;
+    height: 50px;
+    cursor: pointer;
+    outline: 0;
+    
+    border-radius: 0 3px 3px 0;
+   
+    text-indent: 10px;
+    background: url(/img/search_icon.png) center left no-repeat #74d1c6;
+}
+
+#custom-search-input input[type=submit]:hover{
+   background-color: #e84393;
+}
+#custom-search-input ul{
+    width: 50%;
+    height: 50px;
+    
+}
+#custom-search-input ul li label {
+    display: inline-block;
+   
+    transition: all .3s ease-in-out;
+
+    background-color: #74d1c6;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    padding: 8px 10px 6px;
+    line-height: 1;
+    text-shadow: none;
+    min-width: 80px;
+    text-align: center;
+    cursor: pointer;
+    float: left;
+}
+
+#custom-search-input ul li label:hover{
+   background-color: #e84393;
+}
+
+#custom-search-input ul li input[type=radio]{display: none;}
+
+
+ul {
+    margin: 0 0 25px;
+    padding: 0;
+}
+
+.primary-nav li{
+    font-size: 20px;
+}
+
+
+/*-------------------login page----------------------*/
+
+
+
+/*~~일반적인 page에서 header부분~~*/
+
+
+#header-custom{
+    position: fixed;
+    width: 100%;
+    height: 155px;
+    z-index: 1;
+}
+
+#header-custom .header-content-custom{
+    margin: 0 auto;
+    max-width: 1170px;
+    padding: 60px 0;
+    width: 100%;
+}
+
+
+/*~~여기까지 header~~*/
+
+
+
+
+/*-------rainbow background---------*/
+// to add "@include rainbow;"
+
+@mixin rainbow(){
+  background: linear-gradient(-45deg,#7158e2 10%, #f78fb3 90% );
+    -webkit-animation:'slide' 5s 0s 1 linear forwards;
+}
+@keyframes slide{
+  0%{
+    background-position: 0 0;
+  }
+  100%{
+    background-position: 0 69vw;
+  }
+  
+}
+/*----------------------------------------*/
+
+
+
+.login-container {
+  padding: 1px 0;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  color: #fff;
+  font-family: "Comfortaa", "Helvetica", sans-serif;
+  background: linear-gradient(45deg, #7158e2 70%, #f78fb3 30%);
+  
+}
+
+
+/*
+@keyframes move {
+    0% {
+        background: linear-gradient(45deg, #7158e2 5%, #f78fb3 95%);
+    }
+    10% {
+        background: linear-gradient(45deg, #7158e2 10%, #f78fb3 90%);
+    }
+    20% {
+        background: linear-gradient(45deg, #7158e2 15%, #f78fb3 85%);
+    }
+    30% {
+        background: linear-gradient(45deg, #7158e2 20%, #f78fb3 80%);
+    }
+    50% {
+       background: linear-gradient(45deg, #7158e2 25%, #f78fb3 75%);
+    }
+    60% {
+       background: linear-gradient(45deg, #7158e2 20%, #f78fb3 80%);
+    }
+    70% {
+       background: linear-gradient(45deg, #7158e2 15%, #f78fb3 85%);
+    }
+    80% {
+       background: linear-gradient(45deg, #7158e2 10%, #f78fb3 90%);
+    }
+    90% {
+       background: linear-gradient(45deg, #7158e2 5%, #f78fb3 95%);
+    }
+    100% {
+        background: linear-gradient(45deg, #7158e2 10%, #f78fb3 90%);
+        }
+}
+
+*/
+
+
+
+
+.login {
+  max-width: 400px;
+  min-height: 630px;
+  margin: 160px auto 100px auto;
+  background-color: rgba(255,255,255,.20);
+}
+
+.login-icon-field {
+  height: 250px;
+  width: 100%;
+  
+  /*background-color: red;*/
+}
+
+.login-icon {
+  margin-top: 100px;
+}
+.centered { display: table; margin-left: auto; margin-right: auto; }
+
+img.hand {
+
+animation: target_image 2s; 
+
+animation-iteration-count: infinite;
+
+transform-origin: 25% 100%;
+
+}
+
+@keyframes target_image {
+
+0% { transform: rotate(-10deg); }
+
+50% { transform: rotate(8deg) }
+
+100% { transform: rotate(-10deg); }
+
+}
+
+.login-form {
+  padding: 8px 0px 20px 0px;
+  margin: 0 auto;
+  height: 170px;
+  width: 70%;
+  box-sizing: border-box;
+  /*background-color: green;*/
+}
+
+.login.row {
+  display: none;
+}
+
+.username-row {
+  position: relative; 
+  height: 40px;
+  /*background-color: pink;*/
+  border-bottom: 1px solid;
+  margin-bottom: 10px;
+}
+
+.password-row {
+  position: relative;
+  height: 40px;
+ /* background-color: grey;*/
+  border-bottom: 1px solid;
+}
+
+.password-icon,
+.user-icon {
+  margin: 5px;
+}
+
+.key-path,
+.user-path{
+  fill: rgba(10,10,10,0);
+  stroke: #fff;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  -webkit-animation: dash 3s .3s linear forwards;
+  animation: dash 3s .3s linear forwards;
+}
+
+.user-path {
+  -webkit-animation: dash 3s .8s linear forwards;
+  animation: dash 3s .8s linear forwards;
+}
+
+.login input{
+  position: absolute;
+  width: 195px;
+  height: 30px;
+  margin: 5px 20px;
+  background: transparent;
+  border: none;
+}
+.login input:focus,
+.login button:focus {
+  outline: none;
+}
+
+.login input::-webkit-input-placeholder {
+  color: rgba(255,255,255,.4);
+}
+
+.login input::-moz-placeholder {
+  color: rgba(255,255,255,.4);
+}
+
+
+.remember-check{
+    height: 30px;
+    width: 80%;
+    margin: 35px 0 25px 50px;
+}
+
+.check-box{
+    margin: 20px 20px 0 20px;
+   
+    opacity: 0.5; 
+}
+
+.login p {
+  display: inline-block;
+  width: 200px;
+  margin: 0 40px;
+  font-size: 13px;
+  /*background-color: yellow;*/
+}
+
+
+.call-to-action{
+    height: 130px;
+    width: 100%;
+    
+}
+.login.call-to-action {
+ 
+  height: 130px;
+  width: 100%;
+  //background-color: blue;
+}
+
+ 
+.login-button {
+  display: block;
+  width: 230px;
+  height: 40px;
+  margin: 20px auto;
+  font-weight: 700;
+  color: #fff;
+  background-color: #3dc1d3;
+  border: none;
+  border-radius: 20px;
+  transition: background-color .10s ease-in-out;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  font-size: 20px;
+}
+
+.login-button:hover {
+  background-color: #e84393;
+}
+
+.login-button:active {
+  background-color: #60e0d1;
+}
+
+.shared-links{
+    height: 60px;
+    width: 200px;
+    margin: 40px auto 0 auto;
+    text-align: center;
+    font-size: 15px;
+}
+
+
+.login a {
+  color: #fff;
+}
+
+.login label,
+.login a:hover {
+  -webkit-cursor: pointer;
+  cursor: pointer;
+}
+
+@-webkit-keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+
+/*----------------mypage-----------------------------------
+--------------------------------------------------------*/
+
+.blinking{
+    -webkit-animation:blink 1s ease-in-out infinite alternate;
+    -moz-animation:blink 1.5s ease-in-out infinite alternate;
+    animation:blink 1.5s ease-in-out infinite alternate;
+}
+@-webkit-keyframes blink{
+    0% {background: url("/diamond-1.png")}
+    50% {background: url("/diamond-2.png")}
+    100%{background: url("/diamond-3.png")}
+}
+@-moz-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}

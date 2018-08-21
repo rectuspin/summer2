@@ -1,0 +1,72 @@
+<!-- header section -->
+<section class="innerbanner" role="banner">
+  <header id="header"> 
+    <!-- navigation section  -->
+    <div class="header-content clearfix"> 
+      <a class="logo" href="/"><img src="/images/logo.png" alt="Mafolio" height="35px"></a>
+      <nav class="navigation" role="navigation">
+        <ul class="primary-nav">
+          <li><a href="/posts/about">소개</a></li><br>
+
+          <% if user_signed_in? %>
+          <li ><%= link_to '설문지 만들기', new_post_path %>
+              <%else%>
+              <%= link_to '설문지 만들기', new_user_session_path, method: :get%>
+          </li>
+          <% end %>
+          <br><br>
+
+          <% if user_signed_in? %>
+          <li>
+            <a href="/posts/mypage">내 페이지</a>
+            <%else%>
+            <%= link_to "로그인", new_user_session_path, method: :get, class: "a" %>
+          </li>
+          <% end %>
+          <br><br>
+
+          <% if user_signed_in? %>
+          <li>
+            <%= link_to "로그아웃", destroy_user_session_path, method: :delete, class: "a" %>
+            <% else%>
+            <%= link_to "회원가입",new_user_registration_path, method: :get, class: "a" %>
+          </li>
+          <% end %> 
+            
+          </li>
+        </ul>
+      </nav>
+      <a href="#" class="nav-toggle">Menu<span></span></a> 
+    </div>
+
+    <!-- navigation section  --> 
+  </header>
+  
+  <!-- banner text -->
+  <div class="container">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="innerbanner-text text-center">
+        <p>내 페이지<br><br><%=current_user.email%></p>
+        <!-- banner text --> 
+      </div>
+    </div>
+  </div>
+</section>
+<!-- header section --> 
+<!-- description text section -->
+<section id="inner-description" class="section inner-description">
+  <div class="container">
+    <div class="col-md-10 col-md-offset-1 text-center">
+      <span class="image blinking"><img src="/images/designer-pic.jpg" alt="Mafolio"></span>
+      <h1>000 포인트가 남았습니다.</h1>
+      <p><%=current_user.username%></p>
+    </div>
+    <div class="col-md-10 col-md-offset-1 space">
+      <h3>내가 올린 설문</h3>
+    </div>
+    <div class="col-md-10 col-md-offset-1 space">
+      <h3>내가 참여한 설문</h3>
+    </div>
+  </div>
+</section>
+<!-- description text section --> 
