@@ -15,7 +15,10 @@
     <%= form.label :title %>
     <%= form.text_area :title %>
   </div>
-
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.select :category, options_for_select(["Select One", "경영","경제", "심리", "문화예술", "IT","과학", "교육","기타"],:disabled => ["Select One"]) %>
+  </div>
   <div class="field">
     <%= form.label :content %>
     <%= form.text_area :content %>
