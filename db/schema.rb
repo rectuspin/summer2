@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2018_07_28_145352) do
     t.text "title"
     t.text "content"
     t.text "email"
+    t.text "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -41,6 +42,7 @@ ActiveRecord::Schema.define(version: 2018_07_28_145352) do
     t.text "content"
     t.integer "post_id"
     t.text "q_type"
+    t.integer "view_type", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
