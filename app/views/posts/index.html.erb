@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Surveys</h1>
+
 <% if user_signed_in? %>
 <%= current_user.email + '(' + current_user.roles.pluck(:name).last + ')' %>
 <%= link_to "Log out", destroy_user_session_path, method: :delete%>
@@ -8,6 +9,17 @@
 <%= link_to "Log in", new_user_session_path, method: :get%>
 <%= link_to "new sign",new_user_registration_path, method: :get%>
 <% end %>
+<p>
+<%= link_to "ALL", posts_path %>
+<%= link_to "경영" ,'/business'%>
+<%= link_to "경제", '/economy'%>
+<%= link_to "심리", '/psychology'%>
+<%= link_to "문화예술", '/culture'%>
+<%= link_to "IT", '/it'%>
+<%= link_to "과학", '/science'%>
+<%= link_to "교육", '/education'%>
+<%= link_to "기타", '/others'%>
+</p>
 <table>
   <thead>
     <tr>
@@ -27,8 +39,10 @@
         <td><%= post.content %></td>
         <% if not user_signed_in? %>
         <% status = ''%>
+        <% elsif post.status =='done' %>
+        <% status = '설문종료' %>
         <% elsif post.answers.pluck(:ans_email).include? current_user.email %>
-        <% status = '완료' %>
+        <% status = '답변완료' %>
         <% elsif post.email == current_user.email %>
         <% status = 'MY'%>
         <% else %>
@@ -46,6 +60,9 @@
           <% end %>
           <% if @ability.can? :destroy, post %>
             <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+          <% if @ability.can? :done, post %>
+            <td><%= link_to '설문종료', "posts/#{post.id}/done" %></td>
           <% end %>
             <td><%= link_to 'Result', "/posts/#{post.id}/result" %></td>
 

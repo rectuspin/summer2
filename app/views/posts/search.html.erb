@@ -1,6 +1,2 @@
 검색결과<br><br>
-<% @projects.each do |project|%>
-    제목: <%=project.title%><br>
-    내용: <%=project.content%><br>
-    ----------------------------------<br>
-<%end%>
+<%= render partial: 'categoryindex', locals: {category: "'"+@q[1..-2]+"'로 검색된", posts: @projects} %>

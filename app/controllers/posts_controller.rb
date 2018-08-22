@@ -7,6 +7,43 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   before_action :set_category, only: [:index, :new, :update]
+  def business
+    @business = Post.where(category: '경영')
+    @ability = Ability.new(current_user)
+  end
+  def economy
+    @economy = Post.where(category: '경제')
+    @ability = Ability.new(current_user)
+  end
+  def psychology
+    @psychology = Post.where(category: '심리')
+    @ability = Ability.new(current_user)
+  end
+  def culture
+    @culture = Post.where(category: '문화예술')
+    @ability = Ability.new(current_user)
+  end
+  def it
+    @it = Post.where(category: 'IT')
+    @ability = Ability.new(current_user)
+  end
+  def science
+    @science = Post.where(category: '과학')
+    @ability = Ability.new(current_user)
+  end
+  def education
+    @education = Post.where(category: '교육')
+    @ability = Ability.new(current_user)
+  end
+  def other
+    @other = Post.where(category: '기타')
+    @ability = Ability.new(current_user)
+  end
+  def done
+    @post = Post.find(params[:post_id])
+    @post.done!
+    redirect_to action: 'index'
+  end
   def result
     @post = Post.find(params[:post_id])
     @questions = @post.questions
@@ -179,6 +216,7 @@ class PostsController < ApplicationController
   def search
     @q= "%#{params[:query]}%"
     @projects=Post.where("title LIKE ? or content LIKE ?", @q, @q)
+    @ability = Ability.new(current_user)
     render 'posts/search'
   end
   
@@ -189,7 +227,7 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
     def set_category
-      @category = ['경영','경제','IT','교육','문화/생활']
+      @category = ['경영','경제','심리','IT','교육','문화예술','과학','기타']
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params

@@ -10,8 +10,9 @@ class Ability
     if user.has_role? :admin
         can :manage, :all
     elsif user.has_role? :member
-        can [:index, :show, :new, :create, :answernew, :answercreate, :result], Post
-        can [:questioncreate, :questiondestroy, :questionedit, :questionupdate], Post, user_id: user.id
+        can [:index, :show, :new, :create, :answernew, :answercreate, :result, :search], Post
+        can [:business, :economy, :culture, :it, :education, :other, :psychology, :science], Post
+        can [:questioncreate, :questiondestroy, :business, :economy, :questionedit, :questionupdate, :done, :chart_change], Post, user_id: user.id
         can [:selectioncreate, :selectiondestroy], Post, user_id: user.id
         can [:edit, :update, :destroy], Post, user_id: user.id
     else 
