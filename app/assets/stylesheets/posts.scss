@@ -4,6 +4,10 @@
     font-family:'cwtexhei', 'designhouseOTFLight00';
 }
 
+
+/*-----------------------index---------------------------------------
+--------------------------------------------------------------------*/
+
 /*----------------gradation -> 색깔 접힌 배경화면 ----------------*/
 //to add "@include gradation-fold;"
 
@@ -318,6 +322,19 @@ transform-origin: 25% 100%;
   width: 70%;
   box-sizing: border-box;
   /*background-color: green;*/
+}
+
+.signup-form{
+  padding: 8px 0px 20px 0px;
+  margin: 0 auto;
+  height: 300px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.signup-form.span-box{
+  color: #fff;
+  font-size: 15px;  
 }
 
 .login.row {

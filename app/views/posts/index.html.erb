@@ -1,48 +1,5 @@
 
-<!-- header section -->
 <section class="banner" role="banner">
-  <header id="header"> 
-    <!-- navigation section  -->
-    <div class="header-content clearfix"> 
-      <a class="logo" href="/"><img src="/images/logo.png" alt="Mafolio" height="35px"></a>
-      <nav class="navigation" role="navigation">
-        <ul class="primary-nav">
-          <li><a href="/posts/about">소개</a></li><br>
-
-          <% if user_signed_in? %>
-          <li ><%= link_to '설문지 만들기', new_post_path %>
-              <%else%>
-              <%= link_to '설문지 만들기', new_user_session_path, method: :get%>
-          </li>
-          <% end %>
-          <br><br>
-
-          <% if user_signed_in? %>
-          <li>
-            <a href="/posts/mypage">내 페이지</a>
-            <%else%>
-            <%= link_to "로그인", new_user_session_path, method: :get, class: "a" %>
-          </li>
-          <% end %>
-          <br><br>
-
-          <% if user_signed_in? %>
-          <li>
-            <%= link_to "로그아웃", destroy_user_session_path, method: :delete, class: "a" %>
-            <% else%>
-            <%= link_to "회원가입",new_user_registration_path, method: :get, class: "a" %>
-          </li>
-          <% end %> 
-            
-          </li>
-        </ul>
-      </nav>
-      <a href="#" class="nav-toggle">Menu<span></span></a> 
-    </div>
-
-    <!-- navigation section  --> 
-  </header>
-  
   <!-- banner text -->
   <div class="container">
     <div class="col-md-10 col-md-offset-1">
@@ -94,14 +51,14 @@
 </section>
 <!-- description text section --> 
 <!-- portfolio section -->
-<section id="works" class="works section no-padding">
+<section id="works" class="works section no-padding ">
   <div class="container-fluid">
     <div class="row no-gutter">
       <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="/images/work-1.jpg" class="work-box"> <img src="/images/work-1.jpg" alt="">
         <div class="overlay">
           <div class="overlay-caption">
             <h5>경영</h5>
-            <p></p>
+            <p>Management</p>
           </div>
         </div>
         <!-- overlay --> 
@@ -110,7 +67,7 @@
         <div class="overlay">
           <div class="overlay-caption">
             <h5>경제</h5>
-            <p>Website Design</p>
+            <p>Economy</p>
           </div>
         </div>
         <!-- overlay --> 
@@ -119,7 +76,7 @@
         <div class="overlay">
           <div class="overlay-caption">
             <h5>심리</h5>
-            <p>Branding</p>
+            <p>psychology</p>
           </div>
         </div>
         <!-- overlay --> 
@@ -127,8 +84,8 @@
       <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="/images/work-4.jpg" class="work-box"> <img src="/images/work-4.jpg" alt="">
         <div class="overlay">
           <div class="overlay-caption">
-            <h5>문화예술</h5>
-            <p>Graphic Design</p>
+            <h5>교육</h5>
+            <p>Education</p>
           </div>
         </div>
         <!-- overlay --> 
@@ -136,8 +93,8 @@
       <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="/images/work-5.jpg" class="work-box"> <img src="/images/work-5.jpg" alt="">
         <div class="overlay">
           <div class="overlay-caption">
-            <h5>IT</h5>
-            <p>Website Design</p>
+            <h5>문화예술</h5>
+            <p>Arts & Culture</p>
           </div>
         </div>
         <!-- overlay --> 
@@ -145,8 +102,8 @@
       <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="/images/work-6.jpg" class="work-box"> <img src="/images/work-6.jpg" alt="">
         <div class="overlay">
           <div class="overlay-caption">
-            <h5>과학</h5>
-            <p>Logo Design</p>
+            <h5>IT</h5>
+            <p>Information Technology</p>            
           </div>
         </div>
         <!-- overlay --> 
@@ -154,8 +111,8 @@
       <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="/images/work-7.jpg" class="work-box"> <img src="/images/work-7.jpg" alt="">
         <div class="overlay">
           <div class="overlay-caption">
-            <h5>교육</h5>
-            <p>Branding</p>
+            <h5>과학</h5>
+            <p>Science</p>
           </div>
         </div>
         <!-- overlay --> 
@@ -164,7 +121,7 @@
         <div class="overlay">
           <div class="overlay-caption">
             <h5>기타</h5>
-            <p>Website Design</p>
+            <p>Others</p>
           </div>
         </div>
         <!-- overlay --> 
@@ -206,84 +163,4 @@
 </footer>
 
 
-
-
-
-<!--------------------------master 부분--------------------------------------------------->
-<p id="notice"><%= notice %></p>
-
-<h1>Surveys</h1>
-<% if user_signed_in? %>
-<%= current_user.email + '(' + current_user.roles.pluck(:name).last + ')' %>
-<%= link_to "Log out", destroy_user_session_path, method: :delete%>
-<% else%>
-<%= link_to "Log in", new_user_session_path, method: :get%>
-<%= link_to "new sign",new_user_registration_path, method: :get%>
-<% end %>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Status</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-
-    <% @posts.each do |post| %>
-    <% if @ability.can? :index, post %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.content %></td>
-        <% if not user_signed_in? %>
-        <% status = ''%>
-        <% elsif post.answers.pluck(:ans_email).include? current_user.email %>
-        <% status = '완료' %>
-        <% elsif post.email == current_user.email %>
-        <% status = 'MY'%>
-        <% else %>
-        <% status = '새 설문'%>
-        <% end %>
-
-        <td><%=status%></td>
-        <td><%= link_to 'Show', post %></td>
-
-
-        <%# if user_signed_in? %>
-          <% #if post.email == current_user.email %>
-          <% if @ability.can? :update, post %>
-            <td><%= link_to 'Edit', edit_post_path(post) %></td>
-          <% end %>
-          <% if @ability.can? :destroy, post %>
-            <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
-            <td><%= link_to 'Result', "/posts/#{post.id}/result" %></td>
-
-          <% #else %>
-          <% if @ability.can? :answernew, post %>
-            <td><%= link_to 'Answer', "/posts/#{post.id}/answer/new" %></td>
-            <% end %>
-          <% #end %>
-        <%# end %>
-
-      </tr>
-      <%end%>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-<% if user_signed_in? %>
-<%= link_to 'New Post', new_post_path %>
-<% end %>
-
-<br><br>
-<form action="/posts/search" method="post" %>
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-
-    <input name="query" placeholder="찾고싶은 단어를 입력하세요" type="text" autocomplete="off" size="25" >
-    <input type="submit" value="검색"><br>
-</form>     
 
