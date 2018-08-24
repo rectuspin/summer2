@@ -1,12 +1,12 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :all, :show, :about]
 
   skip_before_action :verify_authenticity_token
   # GET /posts
   # GET /posts.json
-  before_action :set_category, only: [:index, :new, :update]
+  before_action :set_category, only: [:index, :all, :new, :update]
   def result
     @post = Post.find(params[:post_id])
     @questions = @post.questions
@@ -121,6 +121,8 @@ class PostsController < ApplicationController
   end
 
   def all
+    @posts = Post.all
+    @ability = Ability.new(current_user)
   end
   
   def mypage
@@ -198,7 +200,7 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
     def set_category
-      @category = ['경영','경제','IT','교육','문화/생활']
+      @category = ['경영','경제', '심리','교육','문화/생활','IT','과학','기타']
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params

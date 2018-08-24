@@ -34,16 +34,50 @@
   </head>
 
   <body>
-    <p class="navbar-text pull-right">
-<% if user_signed_in? %>
-  Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-<% else %>
-  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-<% end %>
-</p>
+
+<!-- header section -->
+
+  <header id="header"> 
+    <!-- navigation section  -->
+    <div class="header-content clearfix"> 
+      <a class="logo" href="/"><img src="/images/logo.png" alt="Mafolio" height="35px"></a>
+      <nav class="navigation" role="navigation">
+        <ul class="primary-nav">
+          <li><a href="/posts/about">소개</a></li>
+
+          <% if user_signed_in? %>
+          <li ><%= link_to '설문지 만들기', new_post_path %>
+              <%else%>
+              <%= link_to '설문지 만들기', new_user_session_path, method: :get%>
+          </li>
+          <% end %>
+        
+          <% if user_signed_in? %>
+          <li>
+            <a href="/posts/mypage">내 페이지</a>
+            <%else%>
+            <%= link_to "로그인", new_user_session_path, method: :get, class: "a" %>
+          </li>
+          <% end %>
+
+          <% if user_signed_in? %>
+          <li>
+            <%= link_to "로그아웃", destroy_user_session_path, method: :delete, class: "a" %>
+            <% else%>
+            <%= link_to "회원가입",new_user_registration_path, method: :get, class: "a" %>
+          </li>
+          <% end %> 
+            
+          </li>
+        </ul>
+      </nav>
+      <a href="#" class="nav-toggle">Menu<span></span></a> 
+    </div>
+
+    <!-- navigation section  --> 
+  </header>
+
+    <p id="notice"><%= notice %></p>
     <%= yield %>
 
     <!-- JS FILES --> 

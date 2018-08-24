@@ -1,64 +1,11 @@
 
-
-
-<!-- 
-
-'Golazo' App Login Page Concept utilizing Velocity.js & SVG animation techniques.
-
-Inspirations:
-+Anton Aheichanka - https://dribbble.com/shots/1945593-Login-Home-Screen?list=users&offset=4
-+Nicolay Talanov - https://codepen.io/suez/pen/dPqxoM
-
--->
-
+  
 <section class="login-container">
-  <div id="header-custom">
-    <!-- navigation section  -->
-    <div class="header-content-custom clearfix">
-      <a class="logo" href="/"><img src="/images/logo.png" alt="Mafolio" height="35px"></a>
-      <nav class="navigation" role="navigation">
-        <ul class="primary-nav">
-          <li><a href="/posts/about">소개</a></li><br>
-
-          <% if user_signed_in? %>
-          <li ><%= link_to '설문지 만들기', new_post_path %>
-              <%else%>
-              <%= link_to '설문지 만들기', new_user_session_path, method: :get%>
-          </li>
-          <% end %>
-          <br><br>
-
-          <% if user_signed_in? %>
-          <li>
-            <a href="/posts/mypage">내 페이지</a>
-            <%else%>
-            <%= link_to "로그인", new_user_session_path, method: :get, class: "a" %>
-          </li>
-          <% end %>
-          <br><br>
-
-          <% if user_signed_in? %>
-          <li>
-            <%= link_to "로그아웃", destroy_user_session_path, method: :delete, class: "a" %>
-            <% else%>
-            <%= link_to "회원가입",new_user_registration_path, method: :get, class: "a" %>
-          </li>
-          <% end %> 
-            
-          </li>
-        </ul>
-      </nav>
-      <a href="#" class="nav-toggle">Menu<span></span></a> 
-    </div>
-      
-  </div>
-    <!-- navigation section  --> 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div id="login" class="login">
     <div class="login-icon-field">
       <div class="centered">
         <img class="login-icon hand" src="https://www.iconsdb.com/icons/preview/white/stop-3-xxl.png" width="100px">
-
       </div>
     </div>
     <div class="login-form">
