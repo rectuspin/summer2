@@ -1,5 +1,5 @@
 <section class="login-container">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
   <div id="login" class="login">
      <div class="login-icon-field h-80">
