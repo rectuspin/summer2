@@ -325,18 +325,35 @@ transform-origin: 25% 100%;
 }
 
 .signup-form{
-  padding: 8px 0px 20px 0px;
+  padding: 40px 50px;
   margin: 0 auto;
-  height: 300px;
+  height: 60%;
   width: 100%;
   box-sizing: border-box;
 }
-
+.signup-form.username-row.row{
+  margin: 30px 10px;
+}
 .signup-form.span-box{
   color: #fff;
   font-size: 15px;  
 }
+.signup-form #row-box{
+  margin: 30px 10px;
+}
+.signup-field{
+  height: 100px;
+  width: 100%;
+  
+}
 
+.signup-field.title{
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  font-size: 30px;
+  
+}
 .login.row {
   display: none;
 }
@@ -504,9 +521,9 @@ transform-origin: 25% 100%;
     animation:blink 1.5s ease-in-out infinite alternate;
 }
 @-webkit-keyframes blink{
-    0% {background: url("/diamond-1.png")}
-    50% {background: url("/diamond-2.png")}
-    100%{background: url("/diamond-3.png")}
+    0% {background: url("/images/diamond-1.png")}
+    50% {background: url("/images/diamond-2.png")}
+    100%{background: url("/images/diamond-3.png")}
 }
 @-moz-keyframes blink{
     0% {opacity:0;}
@@ -515,4 +532,11 @@ transform-origin: 25% 100%;
 @keyframes blink{
     0% {opacity:0;}
     100% {opacity:1;}
+}
+
+
+/*-----------------------signup-----------------------------------
+------------------------------------------------------------------*/
+.signup-form.username-row{
+  margin: 30px 30px;
 }

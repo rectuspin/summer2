@@ -1,29 +1,29 @@
 <section class="login-container">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
   <div id="login" class="login">
-     <div class="login-icon-field h-80">
-        <div class="text-center">회원가입</div>
-    </div>
+     <div class="signup-field h-80">
+        <div class="title">회원가입</div>
+    </div>  
     <div class="signup-form">
-      <div class="username-row row">
+      <div class="username-row row" id="row-box">
         <span class="span-box">이름</span>
         <%= f.text_field :username, autofocus: true, class: "username-input bg-transparent" %>
       </div>
-      <div class="password-row row">
+      <div class="username-row row" id="row-box">
         <span class="span-box">이메일</span>
-        <%= f.email_field :email, autocomplete: "email", class: "password-input input bg-transparent" %>
+        <%= f.email_field :email, autocomplete: "email", class: "username-input bg-transparent" %>
       </div>
-      <div class="password-row row">
-        <span class="span-box">비밀번호</span>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> 글자 이상)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "off" , class: "password-input input bg-transparent"%>
+      <div class="username-row row" id="row-box">
+        <span class="span-box">비밀번호
+        <% if @minimum_username_length %>
+        <em>(<%= @minimum_username_length %> 글자 이상)</em>
+        <% end %></span>
+        <%= f.password_field :password, autocomplete: "off" , class: "username-input bg-transparent"%>
       </div>
-      <div class="password-row row">
+      <div class="username-row row" id="row-box">
         <span class="span-box">비밀번호 확인</span>
-        <%= f.password_field :password_confirmation, autocomplete: "off" , class: "password-input input bg-transparent"%>
+        <%= f.password_field :username_confirmation, autocomplete: "off" , class: "username-input bg-transparent"%>
       </div>
     </div>
 

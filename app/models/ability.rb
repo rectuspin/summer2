@@ -15,7 +15,7 @@ class Ability
         can [:selectioncreate, :selectiondestroy], Post, user_id: user.id
         can [:edit, :update, :destroy], Post, user_id: user.id
     else 
-        can [:index, :show], :all
+        can [:index, :show, :search, :all, :about], :all
     end
     
 
