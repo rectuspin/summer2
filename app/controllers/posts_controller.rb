@@ -187,9 +187,20 @@ class PostsController < ApplicationController
     end
   end
 
-  def search
+   def search
     @q= "%#{params[:query]}%"
-    @projects=Post.where("title LIKE ? or content LIKE ?", @q, @q)
+    
+    @c="#{params[:categorysearch]}"
+    if @c==""
+    @categorycontent=Post.where("title LIKE ? or content LIKE ?", @q, @q)  
+    else
+      @category=Post.where("category LIKE ?", @c)
+      @categorycontent=@category.where("title LIKE ? or content LIKE ?", @q, @q)
+    end
+    # if @category==Post.where("category LIKE ?", @c)
+    #   @projects=Post.where("title LIKE ? or content LIKE ?", @q, @q)
+    # end
+
     render 'posts/search'
   end
   
