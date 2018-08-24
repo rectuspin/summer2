@@ -46,7 +46,7 @@
           <li><a href="/posts/about">소개</a></li>
 
           <% if user_signed_in? %>
-          <li ><%= link_to '설문지 만들기', new_post_path %>
+          <li><%= link_to '설문지 만들기', new_post_path %>
               <%else%>
               <%= link_to '설문지 만들기', new_user_session_path, method: :get%>
           </li>
