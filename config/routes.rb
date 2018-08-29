@@ -18,7 +18,7 @@ get '/posts/:post_id/result' => "posts#result"
 post "/posts/:post_id/questions/:question_id/selections/create" => "posts#selectioncreate"
 get "/posts/:post_id/questions/:question_id/selections/:selection_id/destroy" => 'posts#selectiondestroy'
 get '/posts/:post_id/questions/:question_id/chart_change' => 'posts#chart_change'
-
+get "/posts/:post_id/done" => "posts#done"
 post '/posts/search' => 'posts#search'
 # index, all, about link should be added
 
