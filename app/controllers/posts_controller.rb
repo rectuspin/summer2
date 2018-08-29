@@ -7,6 +7,12 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   before_action :set_category, only: [:index, :all, :new, :update]
+  def done
+    @post = Post.find(params[:post_id])
+    @post.status = true
+    @post.save
+    redirect_to '/'
+  end
   def result
     @post = Post.find(params[:post_id])
     @questions = @post.questions
@@ -121,7 +127,12 @@ class PostsController < ApplicationController
   end
 
   def all
-    @posts = Post.all
+    @cate = params[:cate]
+    if @cate.nil?
+      @posts = Post.all
+    else
+      @posts = Post.where(category: @cate)
+    end
     @ability = Ability.new(current_user)
   end
   
@@ -200,8 +211,9 @@ class PostsController < ApplicationController
     # if @category==Post.where("category LIKE ?", @c)
     #   @projects=Post.where("title LIKE ? or content LIKE ?", @q, @q)
     # end
-
+    @ability = Ability.new(current_user)
     render 'posts/search'
+
   end
   
 

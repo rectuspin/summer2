@@ -5,7 +5,7 @@
   <div class="container">
     <div class="col-md-10 col-md-offset-1">
       <div class="innerbanner-text text-center">
-        <h1>전체</h1>
+        <h1><%= @cate%></h1>
 
         <!-- banner text --> 
       </div>
@@ -59,6 +59,8 @@
         
         <% if not user_signed_in? %>
         <% status = ''%>
+        <% elsif post.status ==true %>
+        <% status = '설문종료' %>
         <% elsif post.answers.pluck(:ans_email).include? current_user.email %>
         <% status = '완료' %>
         <% elsif post.email == current_user.email %>
@@ -76,6 +78,9 @@
           <% end %>
           <% if @ability.can? :destroy, post %>
             <td><%= link_to '삭제', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+          <% if @ability.can? :done, post %>
+            <td><%= link_to '설문종료', "/posts/#{post.id}/done" %></td>
           <% end %>
             <td><%= link_to '설문결과', "/posts/#{post.id}/result" %></td>
 
