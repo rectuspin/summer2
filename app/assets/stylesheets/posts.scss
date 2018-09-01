@@ -1,7 +1,10 @@
 
 @font-face { font-family: 'designhouseOTFLight00'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/designhouseOTFLight00.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+@font-face { font-family: 'Daehan'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Daehan.woff') format('woff'); font-weight: normal; font-style: normal; }
+
 *{
-    font-family:'cwtexhei', 'designhouseOTFLight00';
+    font-family: 'designhouseOTFLight00';
 }
 
 
@@ -342,17 +345,16 @@ transform-origin: 25% 100%;
   margin: 30px 10px;
 }
 .signup-field{
-  height: 100px;
+  min-height: 100px;
   width: 100%;
-  
+  padding: 75px 150px 0 150px;
 }
 
 .signup-field.title{
-  height: 100%;
-  width: 100%;
   color: #fff;
+}
+.title{
   font-size: 30px;
-  
 }
 .login.row {
   display: none;
@@ -547,4 +549,99 @@ transform-origin: 25% 100%;
   background: rgba(255,255,255,0.1);
   margin-right: 100px;
   float: right;
+}
+
+
+/*---------------------------all------------------------------
+------------------------------------------------------------------*/
+
+.cardboard
+{
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 1000px;
+  padding: 40px 30px 0 30px;
+  
+}
+#cardsection{
+    height: 520px;
+    margin: 20px 0px;
+    // box-shadow: 0 0 2px rgba(0,0,0,0.2);
+    transition: 0.6s; 
+    background-color: #fff;
+    // border-radius: 3px;
+    padding: 0 50px;
+    position: relative;
+    z-index: 1;
+    background-image: url("/images/frame1.png");
+    background-size: 100% 100%;
+    // background-size: cover;                     
+    background-repeat: no-repeat;
+    background-position: center center;
+    
+}
+
+  
+.cardtitle{
+color: black;
+width: 100%;
+height: 25%;
+margin: 20px 0 25px 0;
+text-align: center;
+padding: 40px 0;
+font-size: 30px;
+font-family: 'Daehan';
+font-weight: bold;
+
+}
+.cardcontent{
+color: black;
+  width: 100%;
+  height: 40%;
+  margin: 5px 0;
+  font-size: 20px;
+  font-family: 'Daehan';
+
+}
+.cardbutton{
+  width:100%;
+  height: 10%;
+  font-size: 15px;
+}
+.icon-button{
+  width: 100%;
+  }
+
+.icon-button-item{
+   width: 180px;
+   margin-left: auto;
+   margin-right: auto;
+}
+.icon-button-item img{
+  height: 55px;
+  margin: 0 15px;
+}
+
+.icon-button-item img:hover{
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+}
+
+.icon-button-item a{
+  display: inline-block;
+}
+.icon-button-item a:hover{
+  background-color: rgba(255,255,255,0);
+}
+
+
+.cardbottom{
+height: 60px;
+width:100%;
+padding-top: 20px;
+padding-left: 80%;
+
+}
+.cardbottom-item{
+  width: 90px;
+
 }
