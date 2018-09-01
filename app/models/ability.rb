@@ -13,7 +13,7 @@ class Ability
         can [:index, :show, :new, :create, :answernew, :answercreate, :result, :search, :all, :about], Post
         can [:questioncreate, :questiondestroy, :questionedit, :questionupdate, :mypage], Post, user_id: user.id
         can [:selectioncreate, :selectiondestroy], Post, user_id: user.id
-        can [:edit, :update, :destroy], Post, user_id: user.id
+        can [:edit, :update, :destroy, :done], Post, user_id: user.id
     else 
         can [:index, :show, :search, :all, :about], :all
     end

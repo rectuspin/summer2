@@ -5,7 +5,7 @@
   <div class="container">
     <div class="col-md-10 col-md-offset-1">
       <div class="innerbanner-text text-center">
-        <h1>전체</h1>
+        <h1><%= @cate%></h1>
 
         <!-- banner text --> 
       </div>
@@ -80,13 +80,15 @@
           <% if @ability.can? :destroy, post %>
             <%= link_to '삭제', post, method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
+         
+          <% if @ability.can? :done, post %>
+            <%= link_to '설문종료', "/posts/#{post.id}/done" %></td>
+          <% end %>
+       
         </div>
       </div>
-        
 
-
-
-      </div>
+     </div>
       <%end%>
     <% end %>
   </div>

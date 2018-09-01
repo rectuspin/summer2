@@ -1,7 +1,91 @@
-검색결과<br><br>
-<% @categorycontent.each do |project|%>
-	카테고리: <%=project.category%><br>
-    제목: <%=project.title%><br>
-    내용: <%=project.content%><br>
-    ----------------------------------<br>
-<%end%>
+
+
+<section class="innerbanner" role="banner">
+  <!-- banner text -->
+  <div class="container">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="innerbanner-text text-center">
+        <h1>검색결과</h1>
+
+        <!-- banner text --> 
+      </div>
+    </div>
+    
+    
+    <form method="post" action="/posts/search" class="fadeInUp animated">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <div id="custom-search-input">
+            <div class="input-group">
+              <input name="query" type="text" class=" search-query" placeholder="관심있는 설문지를 검색하세요!" autocomplete="on">
+              <input type="submit" class="btn_search" value="검색">
+            </div>
+            <ul>
+              <li>
+                <input type="radio" id="all" name="radio_search" value="all" checked="">
+                <label for="all">전체</label>
+              </li>
+              <li>
+                <input type="radio" id="doctor" name="radio_search" value="doctor">
+                <label for="doctor">뷰티</label>
+              </li>
+              <li>
+                <input type="radio" id="clinic" name="radio_search" value="clinic">
+                <label for="clinic">음식</label>
+              </li>
+            </ul>
+          </div>
+        </form>    
+  </div>
+</section>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Status</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+/*list of posts*/
+
+    <% @categorycontent.each do |post| %>
+    <% if @ability.can? :search, post %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        
+        <% if not user_signed_in? %>
+        <% status = ''%>
+        <% elsif post.answers.pluck(:ans_email).include? current_user.email %>
+        <% status = '완료' %>
+        <% elsif post.email == current_user.email %>
+        <% status = 'MY'%>
+        <% else %>
+        <% status = '새 설문'%>
+        <% end %>
+
+        <td><%=status%></td>
+        <td><%= link_to 'Show', post %></td>
+
+
+          <% if @ability.can? :update, post %>
+            <td><%= link_to '수정', edit_post_path(post) %></td>
+          <% end %>
+          <% if @ability.can? :destroy, post %>
+            <td><%= link_to '삭제', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+            <td><%= link_to '설문결과', "/posts/#{post.id}/result" %></td>
+
+          <% if @ability.can? :answernew, post %>
+            <td><%= link_to '설문참여', "/posts/#{post.id}/answer/new" %></td>
+          <% end %>
+
+
+      </tr>
+      <%end%>
+    <% end %>
+  </tbody>
+</table>

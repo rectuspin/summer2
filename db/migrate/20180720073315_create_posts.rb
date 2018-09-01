@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.text :content
       t.text :email
       t.text :category
+	  t.boolean :status, default: false
       t.timestamps
     end
   end
