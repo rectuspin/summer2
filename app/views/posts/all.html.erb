@@ -37,57 +37,59 @@
         </form>    
   </div>
 </section>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Status</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
 
-  <tbody>
+  
 
-/*list of posts*/
+  <div class="cardboard">
 
     <% @posts.each do |post| %>
     <% if @ability.can? :index, post %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.content %></td>
+      <div class="col-lg-3 col-md-6 col-sm-6 cards" id="cardsection">
+        <div class="cardtitle"><%= post.title %></div>
+        <div class="cardcontent"><%= truncate(post.content, :length => 100) %><br><br><%= link_to '더보기', post, :style=>"color: #12CBC4;" %></div>
         
-        <% if not user_signed_in? %>
-        <% status = ''%>
-        <% elsif post.answers.pluck(:ans_email).include? current_user.email %>
-        <% status = '완료' %>
-        <% elsif post.email == current_user.email %>
-        <% status = 'MY'%>
-        <% else %>
-        <% status = '새 설문'%>
-        <% end %>
 
-        <td><%=status%></td>
-        <td><%= link_to 'Show', post %></td>
+      <div class="icon-button">
+        <div class="icon-button-item">
+          <% if @ability.can? :answernew, post %>
+          <a href="/posts/#{post.id}/answer/new" ><img src="/images/join.png"></a>
+            <%#= link_to '설문참여', "/posts/#{post.id}/answer/new", :style=>"color:#9980FA;" %>
+          <% end %>
+          <a href="/posts/#{post.id}/result"><img src="/images/result.png"></a>
+          <%#= link_to '설문결과', "/posts/#{post.id}/result", :style=>"color:#fd79a8;" %>
+        </div> 
+      </div>
 
+      <div class="cardbottom">
+        <div class="cardbottom-item">
+          <% if not user_signed_in? %>
+          <% status = ''%>
+          <% elsif post.answers.pluck(:ans_email).include? current_user.email %>
+          <% status = '완료' %>
+          <% elsif post.email == current_user.email %>
+          <% status = 'MY'%>
+          <% else %>
+          <% status = '새 설문'%>
+          <% end %>
+          <%=status%>
 
           <% if @ability.can? :update, post %>
-            <td><%= link_to '수정', edit_post_path(post) %></td>
+            <%= link_to '수정', edit_post_path(post) %>
           <% end %>
+
           <% if @ability.can? :destroy, post %>
-            <td><%= link_to '삭제', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <%= link_to '삭제', post, method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
-            <td><%= link_to '설문결과', "/posts/#{post.id}/result" %></td>
-
-          <% if @ability.can? :answernew, post %>
-            <td><%= link_to '설문참여', "/posts/#{post.id}/answer/new" %></td>
-          <% end %>
+        </div>
+      </div>
+        
 
 
-      </tr>
+
+      </div>
       <%end%>
     <% end %>
-  </tbody>
-</table>
+  </div>
+
 
 

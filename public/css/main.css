@@ -17,6 +17,7 @@ p {
 	font-size: 14px;
 	line-height: 22.4px;
 	color: #6c7279;
+
 }
 h1 {
 	font-size: 65px;
@@ -66,7 +67,7 @@ h5 {
 	Global Styles
 -------------------------------------------------------------------------------*/
 a {
-	color: #e84545;
+	color: rgba(255, 255, 255, 0.4);
 }
 a:hover, a:focus {
 	text-decoration: none;
