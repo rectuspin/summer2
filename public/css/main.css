@@ -536,7 +536,9 @@ ul li {
 	min-height: 100%;
 }
 .innerbanner-text {
+	height: 100%;
 	padding-top: 20%;
+
 }
 
 .innerbanner-text p {

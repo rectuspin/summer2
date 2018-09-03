@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 2018_08_21_055852) do
     t.text "content"
     t.text "email"
     t.text "category"
-    t.boolean "status", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
