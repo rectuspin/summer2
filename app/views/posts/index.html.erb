@@ -18,7 +18,9 @@
 					<div id="custom-search-input">
 						<div class="input-group">
 
-               <select name="categorysearch">
+							<input name="query" type="text" class=" search-query" placeholder="관심있는 설문지를 검색하세요!" autocomplete="on">
+							<input type="submit" class="btn_search" value="검색">
+              <select name="categorysearch">
                 <option value="">카테고리</option>
                 <option value="경영">경영</option>
                 <option value="경제">경제</option>
@@ -29,11 +31,8 @@
                 <option value="교육">교육</option>
                 <option value="기타">기타</option>
               </select>
-
-							<input name="query" type="text" class=" search-query" placeholder="관심있는 설문지를 검색하세요!" autocomplete="on">
-							<input type="submit" class="btn_search" value="검색">
 						</div>
-						<ul>
+						<<!-- ul>
 							<li>
 								<a href='/posts/all'>
 								<label for="all">전체</label>
@@ -46,7 +45,7 @@
 								<input type="radio" id="clinic" name="radio_search" value="clinic">
 								<label for="clinic">음식</label>
 							</li>
-						</ul>
+						</ul> -->
 					</div>
 				</form>    
   </div>
